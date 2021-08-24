@@ -12,7 +12,12 @@ export interface Post {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  posts: Post[] = [];
+  posts: Post[] = [
+    {
+      title: 'Title1',
+      text: 'Text1',
+    },
+  ];
 
   updatePosts(post: Post) {
     this.posts.unshift(post);

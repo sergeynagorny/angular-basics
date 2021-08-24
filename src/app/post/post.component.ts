@@ -1,16 +1,28 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Post } from '../app.component';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostComponent implements OnInit {
-  @Input() post!: Post; // [post]="p"
-  // @Input('myPost') post!: Post; // переопределяем название пропса [myPost]="p"
+  @Input() post!: Post;
 
-  constructor() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges', changes);
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('ngOnInit');
+  }
 }
