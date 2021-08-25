@@ -1,5 +1,9 @@
 <div class="container">
   <h1>Angular Pipes</h1>
+
   <p>{{ e | number:'1.1-5' }}</p> <!-- 2.71828 -->
   <p>{{ e | number:'3.1-2' }}</p> <!-- 002.72 -->
+
+  <p>{{ str | lowercase | uppercase | titlecase }}</p>
+  <p>{{ str | slice:2:-2 }}</p> <!-- ring pi -->
 </div>
