@@ -64,7 +64,7 @@ img {
   margin: 0.7rem 0;
 }
 
-input,
+input[type='text'],
 select,
 textarea {
   display: block;
@@ -79,3 +79,15 @@ hr {
   margin: .5rem 0;
 }
 
+label {
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-right: 0.5rem;
+  }
+}
+
+fieldset {
+  padding: 20px;
+}
