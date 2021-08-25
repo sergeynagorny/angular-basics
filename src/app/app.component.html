@@ -3,9 +3,14 @@
 
   <p>{{ e | number:'1.1-5' }}</p> <!-- 2.71828 -->
   <p>{{ e | number:'3.1-2' }}</p> <!-- 002.72 -->
-
+  <hr/>
   <p>{{ str | lowercase | uppercase | titlecase }}</p>
   <p>{{ str | slice:2:-2 }}</p> <!-- ring pi -->
-
+  <hr/>
   <p>{{ date | date:'MMMM dd yyy' }}</p>
+  <hr/>
+  <p>{{ float | currency }}</p>
+  <p>{{ float | percent }}</p>
+  <hr/>
+  <pre>{{ obj | json }}</pre>
 </div>
