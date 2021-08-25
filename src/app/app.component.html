@@ -1,29 +1,5 @@
 <div class="container">
   <h1>Angular Pipes</h1>
-  <fieldset>
-    <legend>Search:</legend>
-    <input type="text" [(ngModel)]="searchValue" placeholder="{{ 'Search by ' + searchType }}"/>
-    <label>
-      <input
-        type="radio"
-        name="search_type"
-        (click)="searchType = 'title'"
-        checked
-      >
-      By Title
-    </label>
-    <label>
-      <input
-        type="radio"
-        name="search_type"
-        (click)="searchType = 'text'"
-        value="text"
-      >
-      By Text
-    </label>
-  </fieldset>
-  <div class="card" *ngFor="let post of posts | postsFilter:searchValue:searchType">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.text }}</p>
-  </div>
+
+  <p>Wait for it... {{ p | async }} </p>
 </div>
