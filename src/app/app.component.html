@@ -1,5 +1,14 @@
 <div class="container">
-  <h1>App Counter: {{ appCounterService.counter }}</h1>
-  <button class="btn" (click)="appCounterService.increase()">+</button>
-  <button class="btn" (click)="appCounterService.decrease()">-</button>
+  <div class="card">
+    <h1>App Counter: {{ appCounterService.counter }}</h1>
+    <button class="btn" (click)="appCounterService.increase()">+</button>
+    <button class="btn" (click)="appCounterService.decrease()">-</button>
+  </div>
+
+  <div class="card">
+    <h1>Local Counter: {{ localCounterService.counter }}</h1>
+    <button class="btn" (click)="localCounterService.increase()">+</button>
+    <button class="btn" (click)="localCounterService.decrease()">-</button>
+  </div>
+
 </div>
