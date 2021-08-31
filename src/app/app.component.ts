@@ -32,6 +32,8 @@ export class AppComponent {
   submit() {
     console.log('Form submitted: ', this.form);
     console.log('Form data: ', { ...this.form.value });
+
+    this.form.reset();
   }
 
   setCapital() {
