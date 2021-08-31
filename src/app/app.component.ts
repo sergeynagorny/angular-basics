@@ -27,4 +27,21 @@ export class AppComponent {
     console.log('Form submitted: ', this.form);
     console.log('Form data: ', { ...this.form.value });
   }
+
+  setCapital() {
+    type TCityKey = 'ru' | 'ua' | 'by';
+    const cityMap = {
+      ru: 'Moscow',
+      ua: 'Kiev',
+      by: 'Minsk',
+    };
+
+    const cityKey: TCityKey = this.form.get('address')?.get('country')?.value;
+
+    const currentCity = cityMap[cityKey];
+
+    this.form.patchValue({
+      address: { city: currentCity },
+    });
+  }
 }
