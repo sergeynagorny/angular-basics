@@ -11,6 +11,7 @@
       >
         <small *ngIf="form.get('email')?.errors?.required">Поле email не может быть пустым</small>
         <small *ngIf="form.get('email')?.errors?.email">Введите корректный email</small>
+        <small *ngIf="form.get('email')?.errors?.uniqEmail">Email async@mail.ru не проходит валидацию сервера</small>
       </div>
     </div>
 
@@ -57,7 +58,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn" [disabled]="form.invalid">Отправить</button>
+    <button type="submit" class="btn" [disabled]="form.invalid || form.pending">Отправить</button>
 
   </form>
 </div>
