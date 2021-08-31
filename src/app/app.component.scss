@@ -1,0 +1,13 @@
+
+input {
+  // Angular по дефолту предоставляет множество классов
+  // описывающих состояние элемента
+
+  &.ng-invalid.ng-touched {
+    border: 2px solid tomato;
+  }
+
+  &.ng-valid {
+    border: 2px solid mediumseagreen;
+  }
+}
