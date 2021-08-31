@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ export class AppComponent {
         country: new FormControl('by'),
         city: new FormControl('', Validators.required),
       }),
+      skills: new FormArray([]),
     });
   }
 
@@ -43,5 +44,10 @@ export class AppComponent {
     this.form.patchValue({
       address: { city: currentCity },
     });
+  }
+
+  addSkill() {
+    const control = new FormControl('');
+    (this.form.get('skills') as FormArray).push(control);
   }
 }
