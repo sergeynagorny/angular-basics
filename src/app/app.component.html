@@ -7,10 +7,10 @@
     <li routerLinkActive="active"><a routerLink="/about">About</a></li>
     <li routerLinkActive="active"><a routerLink="/posts">Posts</a></li>
     <li>
-      <button class="btn">Login</button>
+      <button class="btn" (click)="auth.login()">Login</button>
     </li>
     <li>
-      <button class="btn">Logout</button>
+      <button class="btn" (click)="auth.logout()">Logout</button>
     </li>
   </ul>
 </nav>
