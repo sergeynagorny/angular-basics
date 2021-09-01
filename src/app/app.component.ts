@@ -45,4 +45,10 @@ export class AppComponent implements OnInit {
       this.todos = this.todos.filter((todo) => todo.id !== id);
     });
   }
+
+  completeTodo(id: number) {
+    this.todosService.putTodo(id, { completed: true }).subscribe((newTodo) => {
+      this.todos.find((todo) => todo.id === newTodo.id)!.completed = newTodo.completed;
+    });
+  }
 }

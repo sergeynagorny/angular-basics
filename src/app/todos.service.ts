@@ -8,8 +8,8 @@ export type TTodo = {
   title: string;
   completed: boolean;
 };
-
 export type TNewTodo = Omit<TTodo, 'id'>;
+export type TNewData = Partial<TTodo>;
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
@@ -25,5 +25,9 @@ export class TodosService {
 
   deleteTodo(id: number): Observable<void> {
     return this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+  }
+
+  putTodo(id: number, TNewData: TNewData): Observable<TTodo> {
+    return this.http.put<TTodo>(`https://jsonplaceholder.typicode.com/todos/${id}`, TNewData);
   }
 }
