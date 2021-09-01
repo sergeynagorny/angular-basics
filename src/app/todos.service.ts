@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -16,7 +16,11 @@ export class TodosService {
   constructor(private http: HttpClient) {}
 
   postTodo(newTodo: TNewTodo): Observable<TTodo> {
-    return this.http.post<TTodo>('https://jsonplaceholder.typicode.com/todos', newTodo);
+    return this.http.post<TTodo>('https://jsonplaceholder.typicode.com/todos', newTodo, {
+      headers: new HttpHeaders({
+        'My-Custom-Header': Math.random().toString(),
+      }),
+    });
   }
 
   getTodos(): Observable<TTodo[]> {
