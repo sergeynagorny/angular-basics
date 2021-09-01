@@ -11,6 +11,8 @@
 
   <hr>
 
+  <div *ngIf="errorMessage;" style="color: tomato">{{ errorMessage }}</div>
+
   <div *ngIf="!isLoading; else spinner">
     <div *ngIf="todos.length; else emptyTodo">
       <div class="card" *ngFor="let todo of todos">

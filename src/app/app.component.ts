@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   todos: TTodo[] = [];
   isLoading = false;
   todoTitle = '';
+  errorMessage = '';
 
   constructor(private todosService: TodosService) {}
 
@@ -34,10 +35,15 @@ export class AppComponent implements OnInit {
 
   getTodos() {
     this.isLoading = true;
-    this.todosService.getTodos().subscribe((todos) => {
-      this.todos = todos;
-      this.isLoading = false;
-    });
+    this.todosService.getTodos().subscribe(
+      (todos) => {
+        this.todos = todos;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.errorMessage = error.message;
+      }
+    );
   }
 
   deleteTodo(id: number) {
