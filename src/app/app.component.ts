@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay } from 'rxjs/operators';
 
-export interface Todo {
-  completed: boolean;
+export type TTodo = {
+  id: number;
   title: string;
-  id?: number;
-}
+  completed: boolean;
+};
+
+export type TNewTodo = Omit<TTodo, 'id'>;
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,7 @@ export interface Todo {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  todos: Todo[] = [];
+  todos: TTodo[] = [];
   isLoading = false;
   todoTitle = '';
 
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit {
   addTodo() {
     if (!this.todoTitle.trim()) return;
 
-    const newTodo: Todo = {
+    const newTodo: TNewTodo = {
       title: this.todoTitle,
       completed: false,
     };
@@ -38,7 +40,7 @@ export class AppComponent implements OnInit {
   getTodos() {
     this.isLoading = true;
     this.http
-      .get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
+      .get<TTodo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
       .pipe(delay(1500))
       .subscribe((todos) => {
         this.todos = todos;
@@ -46,9 +48,17 @@ export class AppComponent implements OnInit {
       });
   }
 
-  postTodo(newTodo: Todo) {
+  postTodo(newTodo: TNewTodo) {
     this.http
-      .post<Todo>('https://jsonplaceholder.typicode.com/todos', newTodo)
+      .post<TTodo>('https://jsonplaceholder.typicode.com/todos', newTodo)
       .subscribe((todo) => this.todos.push(todo));
+  }
+
+  deleteTodo(id: number) {
+    this.http
+      .delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .subscribe(() => {
+        this.todos = this.todos.filter((todo) => todo.id !== id);
+      });
   }
 }
