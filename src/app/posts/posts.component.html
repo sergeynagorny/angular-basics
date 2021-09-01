@@ -9,7 +9,7 @@
 
 <div *ngFor="let post of postsService.posts" class="card">
   <h4>
-    <a href="#">
+    <a [routerLink]="['/posts', post.id]">
       <strong>(ID {{post.id}})</strong>
       {{post.title}}
     </a>
