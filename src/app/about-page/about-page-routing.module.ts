@@ -7,7 +7,7 @@ import { AboutExtraPageComponent } from './about-extra-page/about-extra-page.com
   imports: [
     RouterModule.forChild([
       {
-        path: 'about',
+        path: '',
         component: AboutPageComponent,
         children: [{ path: 'extra', component: AboutExtraPageComponent }],
       },
