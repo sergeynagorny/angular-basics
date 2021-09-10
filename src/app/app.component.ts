@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +10,29 @@ export class AppComponent {
   sub: Subscription;
 
   constructor() {
-    const intervalStream$ = interval(1000);
-    this.sub = intervalStream$.subscribe((value) => {
-      console.log(value);
+    const stream$ = new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(1);
+      }, 1500);
+
+      setTimeout(() => {
+        observer.complete(); // завершение стрима (если до этого не было ошибок)
+      }, 1900);
+
+      setTimeout(() => {
+        observer.error('Something went wrong');
+      }, 2000);
+
+      setTimeout(() => {
+        observer.next(2);
+      }, 2500);
     });
+
+    this.sub = stream$.subscribe(
+      (value) => console.log('Next: ', value),
+      (error) => console.log('Error: ', error),
+      () => console.log('Complete')
+    );
   }
 
   stopInterval() {
